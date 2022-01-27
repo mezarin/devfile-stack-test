@@ -56,7 +56,7 @@ RUN umask -S u=rwx,g=rwx,o=rx; gradle build -Pliberty.runtime.version=${LIBERTY_
 
 # Start the Liberty server in dev mode. There are dependencies that are detected during dev mode execution due to the use of mojo executor, etc.
 RUN nohup bash -c "umask -S u=rwx,g=rwx,o=rx; gradle libertyDev -Pliberty.runtime.version=${LIBERTY_RUNTIME_VERSION} -Pliberty.runtime.name=${LIBERTY_RUNTIME_ARTIFACTID} -Pliberty.runtime.group=${LIBERTY_RUNTIME_GROUPID} --hotTests &" \
- && sleep 600 \
+ && sleep 60 \
  && echo  && echo "Done sleeping" && echo
 
 # Delete the defaultServer directory created during libertyDev task execution. Users will customize their own. 

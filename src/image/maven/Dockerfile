@@ -73,7 +73,7 @@ RUN umask -S u=rwx,g=rwx,o=rx; mvn -B -e -DserverName=tmp -Dmaven.repo.local=/mv
 # Done sleeping
 
 RUN nohup bash -c "umask -S u=rwx,g=rwx,o=rx; mvn -B -e -DserverName=tmp -Dmaven.repo.local=/mvn/repository -Dliberty.runtime.version=${LIBERTY_RUNTIME_VERSION} -Dliberty.runtime.artifactid=${LIBERTY_RUNTIME_ARTIFACTID} -Dliberty.runtime.groupid=${LIBERTY_RUNTIME_GROUPID} io.openliberty.tools:liberty-maven-plugin:{{.LIBERTY_MAVEN_PLUGIN_VERSION}}:dev -DhotTests=true &" \
- && sleep 600 \
+ && sleep 60 \
  && echo  && echo "Done sleeping" && echo
 
 # Cache dependencies associated with the previous major version of the microprofile APIs and OL microprofile features.
