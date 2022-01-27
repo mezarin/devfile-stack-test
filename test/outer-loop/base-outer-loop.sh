@@ -95,6 +95,8 @@ while ! ${livenessResults[@]} | grep -qF '{"checks":[{"data":{},"name":"SampleLi
         kubectl describe service ${COMP_NAME} -n ${NAMESPACE}
         echo "$(${currentTime[@]}): App ingress resource config:"
         kubectl describe ingress ${COMP_NAME} -n ${NAMESPACE}
+        kubectl get ingress -n ${NAMESPACE}
+        kubectl describe ingress -n ${NAMESPACE}
         echo "$(${currentTime[@]}): Nginx ingress controller config:"
         $BASE_WORK_DIR/test/utils.sh printPodConfig "app.kubernetes.io/name=ingress-nginx,app.kubernetes.io/component=controller" "kube-system"
         echo "$(${currentTime[@]}): Nginx ingress controller pod log:"
