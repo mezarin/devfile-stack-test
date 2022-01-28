@@ -19,8 +19,8 @@ jobs:
       - name: 'Setup: Install Minikube'
         uses: manusa/actions-setup-minikube@v2.3.1
         with:
-          minikube version: 'v1.11.0'
-          kubernetes version: 'v1.17.0'
+          minikube version: 'v1.25.1'
+          kubernetes version: 'v1.23.1'
           github token: ${{ secrets.GITHUB_TOKEN }}
           start args: '--addons=registry --addons=ingress --insecure-registry "10.0.0.0/24"' 
 
@@ -53,10 +53,9 @@ jobs:
       - name: 'Setup: Build the devfile stack image'
         run: ./test/utils.sh buildStackImage wl
 
+      - name: 'Test: InnerLoop: Maven: Basic'
+        run: ./test/inner-loop/basic-test.sh wl maven
+
       - name: 'Test: OuterLoop: Maven: Basic'
         if: success() || failure()
         run: ./test/outer-loop/basic-test.sh wl maven
-
-      - name: 'Test: OuterLoop: Gradle: Basic'
-        if: success() || failure()
-        run: ./test/outer-loop/basic-test.sh wl gradle
