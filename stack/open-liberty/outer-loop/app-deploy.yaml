@@ -19,7 +19,7 @@ kind: OpenLibertyApplication
 metadata:
   name: {{.COMPONENT_NAME}}
 spec:
-  # Add fields here
+  # Add fields here.
   applicationVersion: 1.0.0
   applicationImage: {{.CONTAINER_IMAGE}}
   service:
@@ -44,3 +44,7 @@ spec:
       initialDelaySeconds: 5
       periodSeconds: 2
   expose: true
+  # Required ingress entries.
+  route:
+    pathType: 'Prefix'
+    path: '/'
